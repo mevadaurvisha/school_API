@@ -2,18 +2,30 @@ import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
 
-    username :{
+    name :{
         type : String,
         required : true
     },
-    password : {
-        type :String,
+    email : {
+        type : String,
+        required : true,
+        unique : true
+    },
+    password :{
+        type : String,
         required : true
     },
     role : {
         type : String,
-        required : true,
-        // enum : ['principal', 'supervisor', 'teacher']
+        enum : ['principal', 'supervisor', 'teacher', 'student'],
+        required :  true
+    },
+    batch : {
+        type : String
+    },
+    createdBy :{
+        type: mongoose.Schema.Types.ObjectId,
+        ref : 'user'
     }
 });
 
