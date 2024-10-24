@@ -19,13 +19,6 @@ const userSchema = new mongoose.Schema({
         type : String,
         enum : ['principal', 'supervisor', 'teacher', 'student'],
         required :  true
-    },
-    batch : {
-        type : String
-    },
-    createdBy :{
-        type: mongoose.Schema.Types.ObjectId,
-        ref : 'user'
     }
 });
 

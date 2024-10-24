@@ -1,10 +1,22 @@
-// const authorizeRoles = (roles) => {
-//     return (req, res, next) => {
-//         if (!roles.includes(req.user)) {
-//           return res.status(403).json({"error" :'Access denied'});
-//         }
-//         next();
-//       };
-// }
+// import jwt from 'jsonwebtoken';
 
-// export default authorizeRoles;
+// const verifyToken = (req, res, next) => {
+
+//     const token = req.headers['authorization'];
+
+//     if(!token) {
+//         res.status(400).json({'error' : "token required"});
+//     }
+
+//     jwt.verify(token.split(' '[1],mysecretkey, (err, decoded) => {
+//         if(err) {
+//             res.status(499).json({'error' : "token authenticate error"});
+//         }
+
+//         req.user = decoded;
+
+//         next();
+//     }));
+// };
+
+// export default verifyToken;

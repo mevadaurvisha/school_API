@@ -6,6 +6,6 @@ import registerRoutes from './registerRoute.js';
 
 routes.use('/', principalRoutes);
 routes.use('/' , loginRoutes);
-routes.use('/api' , registerRoutes);
+routes.use('/' , registerRoutes);
 
 export default routes;

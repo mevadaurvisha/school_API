@@ -4,10 +4,11 @@ export const addUser = async (req, res) => {
 
     
     try {
-       const { username, password, role} = req.body;
+       const { name,email, password, role} = req.body;
     
     const newUser = await userModel({
-        username,
+        name,
+        email,
         password,
         role
     });
