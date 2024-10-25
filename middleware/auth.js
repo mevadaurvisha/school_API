@@ -1,22 +1,23 @@
-// import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
-// const verifyToken = (req, res, next) => {
+// Middleware to authenticate token
+export const authenticateToken = (req, res, next) => {
+    const token = req.headers["authorization"];
+    if (!token) return res.status(401).json({ message: "Access Denied" });
 
-//     const token = req.headers['authorization'];
+    jwt.verify(token, "mysecretkey", (err, user) => {
+        if (err) return res.status(403).json({ message: "Invalid Token" });
+        req.user = user;
+        next();
+    });
+};
 
-//     if(!token) {
-//         res.status(400).json({'error' : "token required"});
-//     }
-
-//     jwt.verify(token.split(' '[1],mysecretkey, (err, decoded) => {
-//         if(err) {
-//             res.status(499).json({'error' : "token authenticate error"});
-//         }
-
-//         req.user = decoded;
-
-//         next();
-//     }));
-// };
-
-// export default verifyToken;
+// Middleware to authorize roles
+export const authorizeRoles = (...roles) => {
+    return (req, res, next) => {
+        if (!roles.includes(req.user.role)) {
+            return res.status(403).json({ message: "Permission Denied" });
+        }
+        next();
+    };
+};
